@@ -9,6 +9,6 @@ block content
 					h5.card-title= movie.title
 					p #{movie.releaseYear} / #{movie.format}
 					.text-right
-						a(href=`/${movie._id}`) Details
+						a(href=`/movies/${movie._id}`) Details
 	else
 		h1.display-4 No Movies Found.

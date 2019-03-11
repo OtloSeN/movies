@@ -7,12 +7,12 @@ router.get('/', movieController.getMovies);
 
 router.get('/add', movieController.showCreate);
 
-router.get('/:id', movieController.getMovieById);
+router.get('/movies/:id', movieController.getMovieById);
 
 router.post('/add', movieController.addMovie);
 
 router.post('/addMovies', upload.single('moviefile'), movieController.addMovies);
 
-router.delete('/:id/delete', movieController.deleteMovie);
+router.delete('/delete/:id', movieController.deleteMovie);
 
 module.exports = router;

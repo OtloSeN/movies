@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-module.exports = app => {
+module.exports = () => {
     mongoose.set('useFindAndModify', false);
     mongoose.connect('mongodb://localhost/movies', {
             useCreateIndex: true,

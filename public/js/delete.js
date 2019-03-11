@@ -1,11 +1,8 @@
 function deleteMovie() {
-    const slug = document.getElementById('slug').value;
-    const url = `/${slug}/delete`;
-    console.log(url);
-    
+    const id = document.getElementById('id').value;
+    const url = `/delete/${id}`;
     axios.delete(url)
         .then((res) => {
-            console.log(456);
             
             window.location.href = '/';
         })
