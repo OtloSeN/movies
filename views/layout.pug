@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+html(lang="en")
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		meta(http-equiv="X-UA-Compatible", content="ie=edge")
+		title Title
+		link(rel="stylesheet", href="/css/bootstrap.min.css")
+		link(rel="stylesheet", href="/css/style.css")
+	body
+		header
+			nav.navbar
+				.container
+					a.navbar-brand(href='/') Home
+					a.nav-link.mr-auto(href="/add") Add Movie
+					form(action="/")
+						.form-inline
+							select.form-control(name="sort")
+								option(value="1") A-Z
+								option(value="-1") Z-A
+								option(value="new") Newest
+							button.btn.btn-outline-success.my-2.my-sm-0.mx-2(type="submit") Sort
+					form(action="/")
+						.form-inline
+							input#search.form-control.mr-sm-2(type="search" name='search' placeholder="Name or Actor" aria-label="Search")
+							button.btn.btn-outline-success.my-2.my-sm-0(type="submit") Search
+		main
+			.container.d-flex.flex-wrap.justify-content-center
+				block content
+		footer.text-center
+			small &copy Copyright Movies 2019
+	script(src="https://unpkg.com/axios/dist/axios.min.js")

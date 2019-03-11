@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+	if movies && movies.length > 0
+		each movie in movies
+			.card(style="width: 15rem;")
+				img.card-img-top(src="/img/movie.jpg" alt="Card image cap")
+				.card-body
+					h5.card-title= movie.title
+					p #{movie.releaseYear} / #{movie.format}
+					.text-right
+						a(href=`/${movie._id}`) Details
+	else
+		h1.display-4 No Movies Found.

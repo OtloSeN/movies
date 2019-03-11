@@ -1,0 +1,67 @@
+body {
+    min-height: 100vh;
+}
+
+nav {
+    background-color: #cccccc;
+    font-size: 20px;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+}
+
+.card {
+    margin: 15px;
+    transition-duration: 0.3s;
+    box-shadow: 5px 5px 10px #8282829c;
+}
+
+.card:hover {
+    transform: scale(1.03, 1.03);
+    /* box-shadow: 20px 20px 20px #8282829c; */
+}
+
+main {
+    min-height: calc(100vh - 74px - 62px);
+}
+
+main .container {
+    padding-top: 30px;;
+}
+
+#actors-list {
+    padding:0;
+}
+
+#actors-list li, .actor {
+    border-radius: 4px;
+    background-color: #d4d4d4;
+    margin: 5px;
+    padding: 0 5px;
+    list-style-type: none;
+}
+
+.movie-card {
+    background-color: #ccc;
+    border-radius: 4px;
+    font-size: 20px;
+}
+
+#movie {
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    width: 550px;
+}
+
+.movie-logo {
+    height: 260px;
+}
+
+footer {
+    background-color: #0f0f0f;
+    color:whitesmoke;
+    padding: 25px 0;
+}

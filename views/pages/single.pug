@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+	#movie
+		.movie-content.text-center
+			h1.display-4= movie.title
+			p.lead #{movie.releaseYear} / #{movie.format}
+			p Actors:
+			ul#actors-list.d-flex.flex-wrap.justify-content-center
+				each star in movie.stars
+					li.actor= star
+			input(type="hidden", id='slug' value=`${movie._id}`)
+			hr
+			.d-flex.justify-content-end
+				button.btn.btn-danger(onclick='deleteMovie()') Delete
+			
+		
+		
+
+	
+	script(src="/js/delete.js")
