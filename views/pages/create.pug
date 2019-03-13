@@ -8,11 +8,11 @@ block content
 		.row
 			.col
 				.form-group
-					label(for="name") Name
-					input#name.form-control(type="text", name="name" placeholder='Name')
+					label(for="title") Name
+					input#title.form-control(type="text" name="title" placeholder='Name')
 				.form-group
-					label(for="year") Year
-					input#year.form-control(type="text", name="year" placeholder='Year')
+					label(for="releaseYear") Year
+					input#releaseYear.form-control(type="text" name="releaseYear" placeholder='Year')
 				.form-group
 					label(for='format') Format
 					select#format.form-control(name="format")
@@ -21,10 +21,10 @@ block content
 						option(value='Blu-Ray') Blu-Ray
 				.form-group
 					label Actors:
-					ul#actors-list.d-flex.flex-wrap
+					ul(name='actors')#actors-list.d-flex.flex-wrap
 
-					.form-inline
-						input#actor.form-control(type="text" placeholder='Actor' onfocus="this.value=''")
+					.d-flex.justify-content-between
+						input#actor.form-control(type="text" placeholder='Actor' onfocus="this.value=''" name='stars')
 						input.btn.btn-outline-success.btn-sm.ml-3(type="button", value="Add Actor" onclick='addActor()')
 				button.btn.btn-success.mb-2(onclick='addMovie()') Add Movie
 			.d-flex.flex-column.justify-content-center
@@ -32,6 +32,8 @@ block content
 			.col.d-flex.flex-column.justify-content-center
 				form(action="/addMovies", method="post" enctype='multipart/form-data')
 					.form-group
+						if error
+							.alert.alert-danger.text-center= error
 						input(type="file", name="moviefile")
 						button.btn.btn-success.mt-2(type='submit') Add Movies
 				

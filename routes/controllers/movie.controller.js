@@ -15,16 +15,16 @@ module.exports = {
     deleteMovie
 }
 
-async function getMovies(req, res) {
-    const { search, sort } = getQueries(req.query);
-    
+async function getMovies(req, res) {    
+    const { sort, search } = getQueries(req.query);        
+        
     try {
         const movies = await Movie
             .find(search)
-            .collation({ locale: 'en', strength: 1 })
+            .collation({ locale: 'en', caseFirst: 'upper' })
             .sort(sort);
 
-        res.render('pages/index', { movies });
+        res.render('pages/index', { movies, queries: req.query });
     } catch (error) {
         console.log(error)
     }
@@ -49,7 +49,7 @@ async function showCreate(req, res) {
 function addMovie(req, res) {
     const { error } = validateMovie(req.body);
 
-    if (error) return res.status(400).send(error.details[0].message);
+    if (error) return res.send(error);
 
     const { title, releaseYear, format, stars } = req.body;
 
@@ -66,18 +66,22 @@ function addMovie(req, res) {
 }
 
 function addMovies(req, res) {
-    if(!req.file) return res.status(400).send('Choose a file.');
+    if(!req.file) return res.status(400).render('pages/create', { error: 'Choose a file.' });
 
     const extname = path.extname(req.file.originalname);
-    if(extname !== '.txt') return res.status(400).send('Only text documents are allowed');
-
     const _path = path.resolve(`uploads/${req.file.filename}`);
+
+    if(extname !== '.txt') {
+        fs.unlink(_path, err => {
+            if (err) throw err;
+        });
+        return res.status(400).render('pages/create', { error: 'Only text documents are allowed' });
+    }
+
     fs.readFile(_path, 'utf-8', (err, data) => {
         if (err) throw err;
 
         const movies = parseMovies(data);        
-
-
 
         Movie.insertMany(movies)
             .then(movies => res.redirect('/'))

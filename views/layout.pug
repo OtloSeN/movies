@@ -13,16 +13,20 @@ html(lang="en")
 				.container
 					a.navbar-brand(href='/') Home
 					a.nav-link.mr-auto(href="/add") Add Movie
-					form(action="/")
+					form.d-flex(action="/")
 						.form-inline
+							if (queries) 
+								- var sort = queries.sort
 							select.form-control(name="sort")
-								option(value="1") A-Z
-								option(value="-1") Z-A
-								option(value="new") Newest
+								option(disabled hidden selected) Sort by
+								option(value="A-Z" selected=(sort == 'A-Z' ? true : false)) A-Z
+								option(value="Z-A" selected=(sort == 'Z-A' ? true : false)) Z-A
+								option(value="Newest" selected=(sort == 'Newest' ? true : false)) Newest
 							button.btn.btn-outline-success.my-2.my-sm-0.mx-2(type="submit") Sort
-					form(action="/")
 						.form-inline
-							input#search.form-control.mr-sm-2(type="search" name='search' placeholder="Name or Actor" aria-label="Search")
+							if (queries) 
+								- var search = queries.search
+							input#search.form-control.mr-sm-2(type="search" name='search' placeholder='Titile or Actor' value=`${search || ''}`)
 							button.btn.btn-outline-success.my-2.my-sm-0(type="submit") Search
 		main
 			.container.d-flex.flex-wrap.justify-content-center
