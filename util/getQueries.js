@@ -5,7 +5,6 @@ function getQueries(queries) {
             { title: { $regex: search, $options: 'i' } },
             { stars: { $regex: search, $options: 'i' } }
         ]}
-        //search = {$or: [{ title: search },{ stars: search }]}
         :
         search = {};
 
